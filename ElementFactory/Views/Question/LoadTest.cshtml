@@ -1,0 +1,101 @@
+﻿@using ElementFactory.Models.Test;
+@using ElementFactory.Models.Question;
+@using ElementFactory.Models.Answer;
+@using System.Text.Json;
+@model TestViewModel;
+
+<div class="loadTestQuestionsContainer">
+    <h1 class="loadTestTitle">@Model.Title</h1>
+    @{
+        var answerCounter = 1;
+    }
+    @foreach (QuestionViewModel question in Model.Questions)
+    {
+        <div class="questionContainer">
+            @if (answerCounter < 10)
+            {
+                <h2 class="questionTitle">0@{@answerCounter}. @question.Description</h2>
+            }
+            else
+            {
+                <h2 class="questionTitle">@answerCounter. @question.Description</h2>
+            }
+
+            <div class="questionAnswersContainer">
+                @foreach (AnswerViewModel answer in question.Answers)
+                {
+                   <div class="answerContainer">
+                       <label>
+                           <input
+                               type="radio" 
+                               class="answerContainer"
+                               name="answers_@answerCounter" 
+                               value="@answer.Value" /> @answer.Value
+                       </label>
+                   </div>
+                }
+            </div>
+        </div>
+
+        answerCounter++;
+    }
+
+    <div class="handInTestContainer">
+        <form method="post" 
+            id="handInTestForm"
+            asp-controller="Question"
+            asp-action="ShowTestResult"
+            asp-route-classCategory="@Model.Category"
+            asp-route-questions="@Model.Questions.Count">
+                <input type="submit" id="handInTest" value="Предай тест" />
+        </form>
+    </div>
+</div>
+<div class="loadTestErrorDiv">
+    Грешка! Трябва да попълните всички въпроси!
+</div>
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+
+    var hyperlink = document.getElementById('handInTest');
+
+    hyperlink.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var answers = Array.from(document.querySelectorAll('input[type="radio"]:checked'));
+        if (answers.length !== @Model.Questions.Count) {
+
+            document
+            .getElementsByClassName('loadTestErrorDiv')[0]
+                .style
+                .display = 'block';
+
+            setTimeout(function () {
+                document.getElementsByClassName('loadTestErrorDiv')[0]
+                    .style
+                    .display = 'none';
+            }, 2000);
+        } else {
+            var correctAnswers = 0;
+            var json = @Html.Raw(@ViewBag.JsonData);
+            for (var i = 0; i < answers.length; i++){
+                var currentAnswer = answers[i].value;
+                var currentCorrectAnswer = json[i].Value;
+
+                if (currentAnswer == currentCorrectAnswer){
+                    correctAnswers++;
+                }
+            }
+
+            var form =
+                document
+                .getElementById('handInTestForm');
+
+            form.setAttribute('action',
+            form.getAttribute('action') + '&answers='+correctAnswers);
+
+            form.submit();
+        }
+    });
+</script>

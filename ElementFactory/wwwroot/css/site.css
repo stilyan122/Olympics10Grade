@@ -1,0 +1,1672 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300&family=Roboto+Condensed:wght@100&display=swap');
+
+:root {
+    --borderPixels: 3px;
+    --borderType: solid;
+}
+
+/* ------------------------------ */
+/* Main page / table css */
+
+body {
+    height: 100vh;
+    background: rgb(108,168,255);
+    background: linear-gradient(to bottom right, rgba(108,168,255,1) 0%, rgba(148,152,255,1) 9%, rgba(147,136,255,1) 28%, rgba(94,167,255,1) 50%, rgba(135,137,255,1) 68%, rgba(155,154,255,1) 90%, rgba(117,164,255,1) 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+
+form {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+
+form,
+table,
+tbody 
+{
+    margin: 0;
+    padding: 0;   
+}
+
+tbody {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    flex: 1;
+}
+
+form tr 
+{
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+}
+
+form td
+{
+    margin: 2px;
+    margin-top: 0;
+    font-weight: 400;
+}
+
+#listItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    grid-column: span 5;
+}
+
+form td p 
+{
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+}
+
+.atomicNumber
+{
+    font-weight: 700;
+    font-size: 0.50em;
+    text-align: left;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.symbol
+{
+    font-size: 0.70em;
+    text-align: center;
+}
+
+.name
+{
+    padding-top: 0;
+    text-align: center;
+    font-size: 0.42em;
+    width: 100%;
+}
+
+.block-form {
+    display: block;
+    justify-content: center;
+    align-content: center;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Different table cells css */
+
+.Alkali.Metal {
+    background-color: #f48584;
+    border: var(--borderPixels) solid red;
+}
+
+.Alkaline.Earth.Metal {
+    background-color: #f7b476;
+    border: var(--borderPixels) solid orange;
+}
+
+.Transition.Metal {
+    background-color: #faf59c;
+    border: var(--borderPixels) solid yellow;
+}
+
+.Metaloid {
+    background-color: #a0d6be;
+    border: var(--borderPixels) solid green;
+}
+
+.PostTransition.Metal {
+    background-color: #cee07b;
+    border: var(--borderPixels) var(--borderType) #90c843;
+}
+
+.Non-Metal {
+    background-color: #96d9eb;
+    border: var(--borderPixels) var(--borderType) #62ccd9;
+}
+
+.Halogen {
+    background-color: #7ec2ec;
+    border: var(--borderPixels) var(--borderType) #6698ba;
+}
+
+.Noble.gas {
+    background-color: #ccbfde;
+    border: var(--borderPixels) var(--borderType) #7a3193;
+}
+
+.Lanthanide {
+    background-color: #f9c7dd;
+    border: var(--borderPixels) var(--borderType) #f495bf;
+}
+
+.Actinide {
+    background-color: #db80b5;
+    border: var(--borderPixels) var(--borderType) #ef59a1;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Physical appearances css */
+
+.Liquid {
+    background-color: rgb(56, 0, 0);
+    color: white;
+    border: 3px solid rgb(35, 0, 0);
+}
+
+.Solid {
+    background-color: rgb(71, 71, 72);
+    color: white;
+    border: 3px solid rgb(81, 81, 82);
+}
+
+.Gas {
+    background-color: rgb(0, 34, 64);
+    color: white;
+    border: 3px solid rgb(0, 10, 64);
+}
+
+.NA {
+    background-color: rgb(22, 22, 22);
+    color: white;
+    border: 3px solid rgb(32, 32, 32);
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Main page inputs css */
+
+.yearInput,
+.elementInput {
+    display: none;
+    margin-top: 2px;
+    padding: 0;
+    width: 40%;
+    grid-column: span 2;
+}
+
+.yearInput,
+.elementInput,
+#seeItemsList {
+    border: 1px solid #ccc;
+    font-size: 16px;
+    border-radius: 5px;
+    outline: none;
+    color: #333;
+    background-color: #D3D3D3;
+}
+
+.listItems {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+#seeItemsList{
+    grid-column: 2 span;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Physics numericals css */
+
+.hasBoilingPoint {
+    color: white;
+}
+
+.hasMeltingPoint {
+    color: #E0E0CE;
+}
+
+.hasAtomicRadius{
+    color: #D4FFEC;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Errors css */
+
+.errorDiv1,
+.errorDiv2{
+    background-color: #ff3333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    display: none;
+    margin: 12px 0;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Dark / Light mode css */
+
+.darkModeBtn, 
+.lightModeBtn {
+    text-decoration: none;
+    padding: 6px 16px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-weight: 400;
+}
+
+.darkModeBtn {
+    color: #D8D9DA;
+    background-color: #272829;
+}
+
+.darkModeBtn:hover {
+    color: #61677A;
+}
+
+.lightModeBtn {
+    color: #D8D9DA;
+    background-color: #272829;
+}
+
+.lightModeBtn:hover {
+    color: #61677A;
+}
+
+.darkModeHeader {
+    background-color: aliceblue;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Pop-up container css */
+
+#popUpContainerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.9s ease-out;
+    display: none;
+}
+
+#popUpContainer {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 24px;
+    transform: scale(0.65);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #e5dfda;
+}
+
+#popUpHeader {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+#popUpArticle2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#popUpArticle2 section {
+    padding: 12px;
+    text-align: center;
+}
+
+#popUpTable{
+    width: 100%;
+}
+
+#popUpSection1 {
+    font-size: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 16px;
+    position: relative;
+}
+
+#popUpMain {
+    text-align: right;
+}
+
+#popUpTable p{
+    font-weight: 400;
+    text-align: left;
+    padding: 0;
+}
+
+#popUpTable th{
+    display: inline-block;
+}
+
+#popUpH1_1{
+    font-size: 120px;
+    margin-bottom: 0;
+    position: relative;
+    font-weight: 400;
+}
+
+#popUpArticle1{
+    display: inline;
+    font-size: 46px;
+    border-bottom: 3px solid black;
+    font-weight: 500;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#popUpSection2 th p,
+#popUpSection2 td p{
+    font-weight: 600;
+}
+
+#popUpP1 {
+    font-size: 40px;
+    margin-left: 8px;
+}
+
+#popUpP {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 12px;
+    font-size: 62px;
+    font-weight: 500;
+}
+
+#popUpP2 {
+    font-size: 36px;
+}
+
+#xMark {
+    font-size: 56px;
+    cursor: pointer;
+    color: red;
+    font-weight: 400;
+    padding: 6px;
+    display: inline;
+}
+
+.bg-black {
+    color: white;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Choose a class / Choose an add type page css */
+
+.classesViewContainer .classesContainer,
+.addTypeContainer .addTypeButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.classesViewContainer .classesContainer a,
+.addTypeContainer .addTypeButtons input{
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 25px;
+    transition: all 0.5s ease;
+    margin: 12px;
+    text-decoration: none;
+    color: black;
+}
+
+.classesViewContainer .classesContainer a:hover,
+.addTypeContainer .addTypeButtons input:hover{
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+    transform: translateY(4px);
+}
+
+.classesViewContainer .classesTitle,
+.addTypeContainer .addTypeTitle {
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-size: 62px;
+}
+
+.addTypeContainer .addTypeTitle{
+    font-size: 46px;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Welcome page css */
+
+.welcomePageContainer {
+    color: white;
+    font-family: 'Recursive', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 12px;
+    padding-top: 0;
+}
+
+.welcomePageContainer h1 {
+    font-size: 62px;
+    margin-bottom: 24px;
+    font-weight: 900;
+    padding: 0 12px
+}   
+
+.welcomePageContainer main {
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.welcomePageContainer a {
+    font-size: 25px;
+    text-decoration: none;
+    color: #E5E4E2;
+    padding-left: 20px;
+    background-color: #4E5180;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 18px;
+}
+
+.welcomePageContainer a:hover {
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+    transform: translateY(-4px);
+    transition: 300ms;
+}
+
+.welcomePageContainer .hyperlink{
+    display: flex;
+    justify-content: right;
+    margin-right: 20px;
+}
+
+.welcomePageContainer footer{
+    font-size: 28px;
+    margin-top: 30px;
+
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* View tests by grade page css */
+
+.testsByGradeTitle{
+    text-align : center;
+    color: white;
+}
+
+.testsByGradeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.testsByGradeAdd,
+.returnToClass{
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin: 12px;
+}
+
+.testsByGradeContainer .testsByGradeCard {
+    background-color: white;
+    padding: 20px;
+    margin: 12px;
+    width: 45%;
+}
+
+.testsByGradeContainer .testsByGradeCard .testTitle {
+    display: inline-block;
+}
+
+.testsByGradeAdd .addTestToDbBtn,
+.returnToClass .returnToClassesBtn {
+    font-size: 25px;
+    text-decoration: none;
+    color: #E5E4E2;
+    background-color: #4E5180;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 18px;
+}
+
+.testsByGradeAdd .addTestToDbBtn:hover,
+.returnToClass .returnToClassesBtn:hover{
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+    transform: translateY(-4px);
+    transition: 300ms;
+}
+
+.testsByGradeCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.testsByGradeCard .testTitle {
+    text-align: center;
+}
+
+.testsByGradeCard .testButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.testsByGradeCard .testButtons a,
+.testsByGradeCard .testButtons input {
+    text-decoration: none;
+    background-color: #7377a4;
+    border: 2px solid #4E5180;
+    border-radius: 12px;
+    padding: 8px;
+    font-size: 16px;
+    color: whitesmoke;
+}
+
+.testsByGradeBtns {
+    display: flex;
+    justify-content: center;
+}
+
+.testsByGradeNoTests {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 500;
+    padding: 20px;
+    color: white;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Doing a test page css */
+
+.questionContainer {
+    background-color: white;
+    margin: 12px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.loadTestTitle {
+    color: ghostwhite;
+    text-align: center;
+    margin-bottom: 12px; 
+}
+
+.questionAnswersContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.questionAnswersContainer div {
+    font-size: 22px;
+    margin: 2px;
+}
+
+#handInTest {
+    font-size: 24px;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    margin-left: auto;
+    margin-right: 12px;
+}
+
+.handInTestContainer {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+    margin-right: 12px;
+}
+
+.loadTestErrorDiv{
+    background-color: red;
+    display: none;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 36px;
+}
+
+#handInTestForm{
+    width: 100%;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Other options css */
+
+.scrollClass {
+    overflow-y: scroll;
+    background-attachment: fixed;
+}
+
+.appFooter {
+    padding: 12px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: white;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Add / Edit a test page css */
+
+#addTestForm,
+#editTestForm {
+    background-color: white;    
+    padding: 20px;
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    border: 1px solid black;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
+}
+
+#addTestForm label
+#editTestForm label{
+    margin: 10px 0;
+    text-align: center;
+    font-size: 28px;
+}
+
+#addTestForm input,
+#editTestForm input{
+    border: 0.5px solid black;
+    border-radius: 4px;
+    display: block;
+    text-align: center;
+    margin-bottom: 6px;
+    width: 80%;
+}
+
+#addTestForm input[type="submit"],
+#editTestForm input[type="submit"] {
+    margin-top: 8px;
+}
+
+#addTestForm input[type="submit"]:hover
+#editTestForm input[type="submit"]:hover {
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+    transition: 300ms;
+    border: none;
+}
+
+#addTestForm .aspValidationTitle,
+#editTestForm .aspValidationTitle {
+    background-color: #9b111e;
+    border-radius: 6px;
+    color: white;
+}
+
+#addTestForm span,
+#editTestForm span{
+    width: 80%;
+    text-align: center;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Write questions page css */
+
+.addQuestionsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:white;
+    padding: 20px; 
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Select questions for test page css */
+
+.selectQuestionsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    border: 2px solid black;
+    margin: 12px;
+    padding: 32px;
+    padding-bottom: 12px;
+    border-radius: 14px;
+}
+
+.selectQuestionsContainerDiv {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: white;
+    padding: 20px;
+}
+
+.selectQuestionsContainer .selectQuestionsDescription{
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.selectQuestionsContainer .selectQuestionsAnswer{
+    font-size: 20px;
+    margin: 6px 0;
+}
+
+.selectQuestionsContainer input{
+    transform: scale(2);
+}
+
+.selectQuestionsContainerDiv .selectQuestionsAnchor {
+    background-color: hsl(261deg 40% 18%);
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-size: 24px;
+    margin-top: 16px;
+    position: fixed;
+    bottom: 12px;
+    right: 0px;
+}
+
+.selectQuestionsContainerDiv .selectQuestionsAnchor:hover {
+    background-color: hsl(261deg 40% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+    transform: translateY(-4px);
+    transition: 300ms;
+    letter-spacing: 1px;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Select questions for test page error divs css */
+
+.errorDivBig,
+.errorDivSmall {
+    background-color: red;
+    font-size: 32px;
+    color: white;
+    border-radius: 12px;
+    padding: 32px;
+    position: fixed;
+    top: 8px;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Display added questions page css */
+
+.addedQuestionsContainer{
+    background-color: white;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Display test result page css */
+
+.testResultContainer {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    border-radius: 20px;
+    font-size: 48px;
+}
+
+.testResultContainer h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.testResultBtn {
+    text-decoration: none;
+    background-color: hsl(261deg 80% 48%);
+    padding: 8px;
+    border-radius: 16px;
+    color: white;
+    margin-left: 8px;
+    font-size: 24px;
+}
+
+.testResultBtn:hover{
+    color: white;
+    transform: translateY(-30px);
+    transition: 300ms;
+}
+
+/* ------------------------------ */
+
+
+/* ------------------------------ */
+/* See all users page css */
+
+.allUsersContainer{
+    margin:3%;
+    display:flex;
+    flex-wrap:wrap;
+    
+}
+
+.currentUserContainer{
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    border:3px solid black;
+    padding:2vh 2vw;
+    background-color:white;
+    width:25vw;
+    height:50vh;
+    box-shadow:darkgray 7px 7px; 
+    margin:0vh 5vw 3vh 0vw;
+    justify-content:space-evenly;      
+}
+.currentUserContainer:hover {
+    background-color: lightgray;
+    box-shadow: gray 7px 7px;
+    transition: 0.2s;
+}
+
+.currentUserContainer .infoUserContainer{
+    display: flex;
+}
+
+.currentUserContainer .infoUserContainer *{
+   width:50%;
+   margin:2vh 0vw 2vh 0vw;
+}
+
+.currentUserContainer .infoUserContainer *:nth-child(1) {
+   text-align: center;
+}
+
+.currentUserContainer .infoUserContainer *:nth-child(1) {
+    margin-right: 2vw;
+}
+.currentUserContainer .infoUserContainer .userButton {
+    border: 2px solid darkgreen;
+    text-decoration: none;
+    background-color: #6A1B9A;
+    border-radius: 60px;
+    text-align: center;
+    color: white;
+    font-size:14px;
+    cursor: pointer;
+}
+.currentUserContainer .infoUserContainer #removeButtonUser {
+    padding-top:3.1%;
+}
+
+#noUsers{
+    background-color:antiquewhite;
+    text-align:center;
+    height:10vh;
+    padding-top:2.6vh;
+    font-weight:700;
+    font-size:25px;
+    width:50%;
+    border-radius:16px;
+    margin:0 auto;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Add questions page css */
+
+.addQuestionsOnOwnFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+}
+
+.addQuestionsOnOwnContainer h2{
+    color: white;
+    text-align: center;
+}
+
+.addQuestionsOnOwnFormContainer input{
+    border-radius: 16px;
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.addQuestionsOnOwnSubmitBtn {
+    background-color: hsl(261deg 90% 48%);
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    margin-top: 12px;
+    border: none;
+}
+
+.addQuestionsOnOwnSubmitBtn:hover{
+    background-color: hsl(261deg 90% 28%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+    transform: translateY(-4px);
+    transition: 300ms;
+    letter-spacing: 1px;
+    border: none;
+}
+
+.addedQuestionsContainer {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.addedQuestionAnswer{
+    font-size: 24px;
+}
+
+.addQuestionsOnOwnEditBtn,
+.addQuestionsOnOwnDeleteBtn {
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 16px;
+    border: none;
+}
+
+.addQuestionsOnOwnEditBtn{
+    background-color: darkorange;
+}
+
+.addQuestionsOnOwnDeleteBtn{
+    background-color: red;
+}
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* ViewAllFlashcards page css */
+
+.mainViewAllFlashcardsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.viewAllFlashcardsContainer {
+    margin-top: 40px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 62.5%;
+}
+
+.viewAllFlashcardsContainer h1,
+.viewAllFlashcardsContainer p,
+.viewAllFlashcardsContainer a,
+.viewAllFlashcardsContainer span {
+    color: #fff;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+}
+
+.viewAllFlashcardsContainer h1,
+.viewAllFlashcardsContainer p,
+.viewAllFlashcardsContainer a {
+}
+
+.viewAllFlashcardsContainer h1 {
+    font-size: 2.5em;
+}
+
+.viewAllFlashcardsContainer p {
+    font-size: 1.5em;
+    line-height: 25px;
+}
+
+.viewAllFlashcardsContainer button {
+    border: 0;
+    border-radius: 26px;
+    padding-bottom: 2px;
+}
+
+.viewAllFlashcardsContainer span {
+    font-size: 1.6em;
+}
+
+
+.viewAllFlashcardsContainer,
+.flip-box,
+.front,
+.back {
+    width: 380px;
+    height: 350px;
+}
+
+.viewAllFlashcardsContainer,
+.flip_box {
+    position: relative;
+}
+
+.front,
+.back {
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.viewAllFlashcardsContainer {
+    perspective: 1200px;
+}
+
+.flip_box {
+    transition: all 0.5s ease-out;
+    transform-style: preserve-3d;
+}
+
+.front {
+    background-color: #024395;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.f_title {
+    padding-top: 30px;
+}
+
+.f_subline {
+    padding-top: 205px;
+    color: #B1D4E8;
+}
+
+.f_headline,
+.b_headline {
+    padding: 0 3vw;
+    line-height: 23px;
+    width: 100%;
+    word-wrap: break-word;
+    text-align: center;
+    margin: auto 0;
+    padding-top: 0;
+}
+
+.back {
+    background-color: #D21849;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.front:hover {
+    cursor: pointer;
+    background-color: hsl(213, 94%, 21%);
+}
+
+.back:hover {
+    cursor: pointer;
+    background-color: #ed2e61;
+}
+
+.b_text {
+    font-size: 1.4em;
+    line-height: 28px;
+    padding-top: 10px;
+    opacity: 0.85;
+}
+
+.b_button {
+    position: absolute;
+    left: 36px;
+    bottom: 38px;
+    width: 150px;
+    height: 52px;
+    background-color: #C30C3D;
+    transition: all 0.3s;
+}
+
+.b_button:hover {
+    background-color: #E30143;
+}
+
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+.r_wrap {
+    position: absolute;
+    right: 40px;
+    bottom: 38px;
+}
+
+.b_round,
+.s_round {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #D21849;
+    transition: all 0.2s linear;
+}
+
+.s_round {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.b_round {
+    opacity: 0;
+    background-color: #D21849;
+}
+
+.b_round_hover {
+    transform: scale(1.40);
+    opacity: 0.4;
+}
+
+.b_round_back_hover {
+    background-color: #F60044;
+}
+
+.s_round_click {
+    transform: scale(1.7);
+}
+
+.s_round_back {
+    background-color: #C30C3D;
+}
+
+.s_arrow {
+    width: 52px;
+    height: 52px;
+    background-image: url('https://img-fotki.yandex.ru/get/194549/29644339.5/0_d6c60_1d7815f0_orig');
+    background-color: transparent;
+    transition: all 0.35s linear;
+    background-size: cover;
+    background-position: 30% 0;
+}
+
+.r_wrap:hover {
+    cursor: grab;
+}
+
+.s_arrow_rotate {
+    transform: rotate(-180deg);
+}
+
+.f_headline {
+    margin: auto 0;
+}
+
+.delete-button-flashcards {
+    margin-bottom: 2.1vh;
+}
+
+.whiteFlashcardTitle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+
+.flex-white-child-title-flashcard {
+    display: inline-block;
+    background-color: white;
+    padding: 2vh 2vw;
+    border-radius: 12.1px;
+    width: 50vw;
+}
+
+.flex-white-child-title-flashcard,
+.container-add-flashcard-viewAll {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+}
+
+.container-add-flashcard-viewAll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-allFlashcards-add {
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    color: #f4f4f4;
+    text-decoration: none;
+    border: 1px solid rgb(146, 148, 248);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12.1px;
+    text-transform: uppercase;
+    background-color: #1d1160;
+}
+
+    .btn-allFlashcards-add:hover {
+        box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+        background-color: #1d1160;
+    }
+
+    .btn-allFlashcards-add:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient( 120deg, transparent, rgba(146, 148, 248, 0.4), transparent );
+        transition: all 650ms;
+    }
+
+    .btn-allFlashcards-add:hover:before {
+        left: 100%;
+    }
+
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* ViewAllFlashcards page css */
+
+#addFlashcardForm,
+#editFlashcardForm {
+    background-color: white;
+    padding: 20px;
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    border: 1px solid black;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
+    align-items: center;
+}
+
+    #addFlashcardForm label
+    #editFlashcardForm label {
+        margin: 10px 0;
+        text-align: center;
+        font-size: 28px;
+    }
+
+    #addFlashcardForm input,
+    #editFlashcardForm input {
+        border: 0.5px solid black;
+        border-radius: 4px;
+        display: block;
+        text-align: center;
+        margin-bottom: 6px;
+        width: 80%;
+    }
+
+        #addFlashcardForm input[type="submit"],
+        #editFlashcardForm input[type="submit"] {
+            margin-top: 8px;
+        }
+
+            #addFlashcardForm input[type="submit"]:hover
+            #editFlashcardForm input[type="submit"]:hover {
+                background-color: hsl(261deg 80% 48%);
+                color: hsl(0, 0%, 100%);
+                box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+                transition: 300ms;
+                border: none;
+            }
+
+    #addFlashcardForm .aspValidationTitle,
+    #editFlashcardForm .aspValidationTitle {
+        background-color: #9b111e;
+        border-radius: 6px;
+        color: white;
+    }
+
+    #addFlashcardForm span,
+    #editFlashcardForm span {
+        width: 80%;
+        text-align: center;
+    }
+
+.flex-add-flashcard-div,
+.flex-edit-flashcard-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45vw;
+}
+
+.main-flex-add-flashcard,
+.main-flex-edit-flashcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-add-flashcard-div .field-validation-error #Title-error,
+.flex-add-flashcard-div .field-validation-error #Content-error,
+.flex-edit-flashcard-div .field-validation-error #Title-error,
+.flex-edit-flashcard-div .field-validation-error #Content-error {
+    color: red;
+}
+
+.white-color-title {
+    color: white;
+}
+
+#submitTestBtn {
+    background-color: red;
+    border: 10px solid blue;
+}
+
+/* ------------------------------ /
+
+/ ------------------------------ /
+/ MyProfile page css */
+
+.checkoutProfileContainer {
+    display: flex;
+    flex-direction: column;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.row-myProfile {
+    display: flex;
+    justify-content:center;
+}
+
+.title-my-profile{
+    font-size:30px;
+    font-weight:700;
+}
+.row-myProfile:not(.title-my-profile) {
+    justify-content: space-between;
+    padding: 1% 15%;
+
+}
+#PhoneNumber{
+    width:35%;
+}
+
+.form-myProfile{
+    display:block;
+}
+.inline-block-button-my-profile {
+    display: inline-block;
+}
+.main-container-myProfile {
+    width: 58vw;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.buttons-my-profile{
+    display:flex;
+    justify-content:space-between;
+    padding:1% 15%;
+}
+
+.checkoutProfileContainer {
+    flex-grow: 1;
+}
+
+/* ------------------------------ /
+
+/ ------------------------------ /
+/ Leaderboard page css */
+
+.pseudo-body-leaderboard * {
+    font-size: 62px, 5%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.pseudo-body-leaderboard {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pseudo-body-leaderboard .container-main{
+    background-color:white;
+    border-radius:14px;
+    
+}
+.pseudo-body-leaderboard main {
+    width: 40rem;
+    height: 42rem;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 10px 4px #e4e7fb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+#header-leaderboard {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+
+}
+
+.share {
+  width: 4.5rem;
+  height: 3rem;
+  background-color: #f55e77;
+  border: 0;
+  border-bottom: 0.2rem solid #c0506a;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.share:active {
+  border-bottom: 0;
+}
+
+.share i {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.h1-leaderboard {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.7rem;
+    color: #141a39;
+    text-transform: uppercase;
+    cursor: default;
+}
+
+#leaderboard {
+  width: 100%;
+  position: relative;
+}
+
+.table-leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #141a39;
+    cursor: default;
+}
+
+.tr-leaderboard {
+    display: flex;
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.2rem;
+}
+
+.tr-leaderboard:not(:first-child):hover {
+    background-color: #fff;
+    transform: scale(1.1);
+    -webkit-box-shadow: 0px 5px 15px 8px #e4e7fb;
+    box-shadow: 0px 5px 15px 8px #e4e7fb;
+}
+
+.tr-leaderboard:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.tr-leaderboard:nth-child(1) {
+  color: #fff;
+}
+
+.td-leaderboard {
+    height: 5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    position: relative;
+    display:flex;
+    align-items:center;
+}
+
+.number-leaderboard {
+  width: 1rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.name-leaderboard {
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.points-leaderboard {
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left:auto;
+}
+
+.points-leaderboard:first-child {
+  width: 10rem;
+}
+
+.gold-medal {
+  height: 3rem;
+  margin-left: 1.5rem;
+}
+
+.ribbon {
+  width: 42rem;
+  height: 5.5rem;
+  top: -0.5rem;
+  background-color: #33006F;
+  position: absolute;
+  left: -1rem;
+  -webkit-box-shadow: 0px 15px 11px -6px #7a7a7d;
+  box-shadow: 0px 15px 11px -6px #7a7a7d;
+}
+
+.ribbon::before {
+  content: "";
+  height: 1.5rem;
+  width: 1.5rem;
+  bottom: -0.8rem;
+  left: 0.35rem;
+  transform: rotate(45deg);
+  background-color: #5c5be5;
+  position: absolute;
+  z-index: -1;
+}
+
+.ribbon::after {
+  content: "";
+  height: 1.5rem;
+  width: 1.5rem;
+  bottom: -0.8rem;
+  right: 0.35rem;
+  transform: rotate(45deg);
+  background-color: #5c5be5;
+  position: absolute;
+  z-index: -1;
+}
+
+#your-score-leaderboard {
+    background-color: #DDA0DD;
+}
+
+.one-leaderboard{
+    font-size:1.8rem;
+    padding-right:18px;
+}
+
+/* ------------------------------ /

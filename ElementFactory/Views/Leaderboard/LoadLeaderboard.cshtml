@@ -1,0 +1,105 @@
+﻿@using ElementFactory.Data.Models;
+﻿@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Mvc;
+@using ElementFactory.Models.User; 
+@using System.Security.Claims;
+@model List<LeaderUser>;
+@inject UserManager<User> userManager;
+@{
+    ViewBag.Title = "Класация";
+}
+@{
+    var user = userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value).Result;
+    var userModel = new LeaderUser()
+            {
+                Id=user.Id,
+                Name = user.UserName,
+                Points = user.Points
+            };
+    int number = Model.IndexOf(Model.FirstOrDefault(x=>x.Id==userModel.Id)) + 1;
+}
+<div class="pseudo-body-leaderboard">
+    <div class="container-main">
+        <main>
+        <div id="header-leaderboard">
+            <h1 class="h1-leaderboard">Класиране</h1>
+        </div>
+        <div id="leaderboard">
+            <div class="ribbon"></div>
+            <table class="table-leaderboard">
+                @for (int i = 0; i < 6; i++)
+                {
+                    var currentUser = userManager.FindByIdAsync(Model[i].Id).Result;
+                    if (i >= Model.Count)
+                    {
+                        break;
+                    }
+                    if (i == 0)
+                    {
+                        <tr class="tr-leaderboard">
+                            <td class="number td-leaderboard one-leaderboard">
+                                @{
+                                    int place = i + 1;
+                                }
+                                    @if (Model[i].Points == 0 || userManager.IsInRoleAsync(currentUser, "Admin").Result)
+                                    {
+                                        @:-
+                                    }
+                                    else
+                                    {
+                                        @place
+                                    }
+                            </td>
+                            <td class="name-leaderboard td-leaderboard">@Model[i].Name</td>
+                            <td class="points-leaderboard td-leaderboard">
+                                @Model[i].Points <img class="gold-medal" src="~/images/gold-medal.png" alt="gold medal" />
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="tr-leaderboard">
+                            <td class="number-leaderboard td-leaderboard">
+                                @{
+                                    int place = i + 1;
+                                }
+                                    @if (Model[i].Points == 0 || userManager.IsInRoleAsync(currentUser, "Admin").Result)
+                                    {
+                                        @:-
+                                    }
+                                    else
+                                    {
+                                        @place
+                                    }
+                            </td>
+                            <td class="name-leaderboard td-leaderboard">@Model[i].Name</td>
+                            <td class="points-leaderboard td-leaderboard">@Model[i].Points</td>
+                        </tr>
+                    }
+
+                }
+                <tr class="tr-leaderboard" id="your-score-leaderboard">
+                    <td class="number td-leaderboard one-leaderboard">
+                            @if (userManager.IsInRoleAsync(user, "Admin").Result || user.Points == 0)
+                            {
+                                @:-
+                            }
+                            else
+                            {
+                                @number
+                            }
+                    </td>
+                        <td class="name-leaderboard td-leaderboard">@userModel.Name (Вие)</td>
+                    <td class="points-leaderboard td-leaderboard">
+                        @userModel.Points
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    </div>
+</div>
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+</script>

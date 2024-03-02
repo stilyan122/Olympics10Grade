@@ -1,0 +1,69 @@
+﻿﻿@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Mvc;
+@using ElementFactory.Data.Models;
+@inject UserManager<User> userManager;
+@model User;
+@{
+    ViewBag.Title = "Моят профил";
+}
+<div class="main-container-myProfile">
+    <form asp-action="Index" asp-controller="Home" class="form-myProfile">
+        <div class="checkoutProfileContainer">
+            <div class="row-myProfile title-my-profile">
+                Здравей, @Model.UserName!
+            </div>
+
+            <div class="row-myProfile">
+                <label>
+                    Имейл
+                </label>
+                <div>
+                    @Model.Email
+                </div>
+            </div>
+
+            <div class="row-myProfile">
+
+                <label>
+                    Роли
+                </label>
+
+                <div>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Teacher") || User.IsInRole("Student"))
+                    {
+
+                        var user = await userManager.FindByNameAsync(User?.Identity?.Name);
+                        var roles = await userManager.GetRolesAsync(user);
+
+
+                        @string.Join(", ",roles)
+                        ;
+
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="buttons-my-profile">
+            @if (userManager.IsInRoleAsync(Model, "Student").Result && Model.IsRequested == false)
+            {
+                <button onclick="@{
+                                Model.IsRequested=true;
+                await userManager.UpdateAsync(Model);
+                                }" class=" btn btn-primary inline-block-button-my-profile">
+                    Заявка за учител
+                </button>
+            }
+            else if (userManager.IsInRoleAsync(Model, "Student").Result && Model.IsRequested != false)
+            {
+                <button onclick="@{
+                    Model.IsRequested=false;
+await userManager.UpdateAsync(Model);
+                                }" class="btn btn-primary inline-block-button-my-profile">
+                    Отмени заявка за учител
+                </button>
+            }
+        </div>
+    </form>
+</div>

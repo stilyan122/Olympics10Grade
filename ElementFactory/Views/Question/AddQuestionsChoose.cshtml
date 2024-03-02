@@ -1,0 +1,109 @@
+﻿@using ElementFactory.Models.Others;
+@using ElementFactory.Data.Models;
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+
+@model AddQuestionsChooseModel;
+
+@{
+    ViewBag.Title = "Селектирайте въпроси";
+}
+
+<div class="selectQuestionsContainerDiv">
+    <form class="selectQuestionsForm" method="post" asp-action="AddQuestionsChooseToDb" asp-controller="Question">
+
+        @foreach (Question question in Model.Questions)
+        {
+            <div class="selectQuestionsContainer">
+                @{
+                    string checkboxId = $"checkbox{question.Id}";
+                    string inputId = $"hidden{question.Id}";
+                    string inputValue = JsonSerializer.Serialize(question,
+                    new JsonSerializerOptions()
+                    {
+                        ReferenceHandler = ReferenceHandler.IgnoreCycles
+                    });
+                }
+
+                <input type="hidden" id="@inputId" value="" asp-for="QuestionsForDBJSON" class="hiddenInput" />
+
+                <input type="checkbox"
+                       id="@checkboxId"
+                       onclick='{
+                             if (document.getElementById("@checkboxId").checked)
+                             {  
+                                 document.getElementById("@inputId").value = JSON.stringify(@Html.Raw(inputValue));
+                             }
+                             else
+                             {  
+                                 document.getElementById("@inputId").value = "";
+                             }
+                       }'/>
+
+                <span class="selectQuestionsDescription">@question.Description</span>
+
+                @foreach (Answer answer in question.Answers)
+                {
+                    <span class="selectQuestionsAnswer">@answer.Value</span>
+                }
+            </div>
+        }
+
+        <input type="hidden" asp-for="TestTitle" value="@Model.TestTitle" />
+        <input type="hidden" asp-for="TestCategory" value="@Model.TestCategory" />
+    </form>
+
+    <button class="selectQuestionsAnchor" onclick="CheckQuestions(@Model.NumberOfQ)">Добави въпроси</button>
+
+    <div class="validationErrorDivSmall">
+        Невалиден брой въпроси!
+        Изберете по-малък брой!
+    </div>
+
+    <div class="validationErrorDivBig">
+        Невалиден брой въпроси!
+        Изберете по-голям брой!
+    </div>
+</div>
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+
+    var errorDivSmall = document
+        .getElementsByClassName('validationErrorDivSmall')[0];
+
+    errorDivSmall.style.display = 'none';
+
+    var errorDivBig = document
+        .getElementsByClassName('validationErrorDivBig')[0];
+
+    errorDivBig.style.display = 'none';
+
+    var form = document
+        .getElementsByClassName('selectQuestionsForm')[0];
+
+    function CheckQuestions(neededLength) {
+        var selected = Array.from(document.querySelectorAll('input[type=checkbox]:checked'));
+
+        if (selected.length > neededLength) {
+            errorDivSmall.classList.add('errorDivSmall');
+            errorDivSmall.style.display = 'block';
+
+            setTimeout(function () {
+                errorDivSmall.style.display = 'none';
+                errorDivSmall.classList.remove('errorDivSmall');
+            }, 2000);
+        }
+        else if (selected.length < neededLength) {
+            errorDivBig.classList.add('errorDivBig');
+            errorDivBig.style.display = 'block';
+
+            setTimeout(function () {
+                errorDivBig.classList.remove('errorDivBig');
+            }, 2000);
+        }
+        else {
+            form.submit();
+        }
+    }
+</script>

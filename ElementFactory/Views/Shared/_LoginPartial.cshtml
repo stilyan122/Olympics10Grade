@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ElementFactory.Data.Models;
+@inject SignInManager<User> signInManager
+@inject UserManager<User> userManager
+@{
+    var user = await userManager.GetUserAsync(this.User);
+}
+<ul class="navbar-nav">
+@if (signInManager.IsSignedIn(User) && user!=null)
+{
+    <li class="nav-item">
+       <a class="nav-link text-white" asp-controller="User" asp-action="LoadProfile" asp-route-id="@user.Id">Моят профил</a>
+    </li>
+    <li class="nav-item">
+            <form class="form-inline" asp-controller="User" asp-action="Logout" asp-area="Identity" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-white">Излизане</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-controller="User" asp-action="Register">Регистриране</a>
+    </li>
+    <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-controller="User" asp-action="Login">Влизане</a>
+    </li>
+}
+</ul>

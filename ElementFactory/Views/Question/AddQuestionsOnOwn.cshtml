@@ -1,0 +1,89 @@
+﻿@using ElementFactory.Models.Others;
+@using ElementFactory.Data.Models;
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+
+@model AddQuestionsCurrentQuestionModel;
+
+@{
+    ViewBag.Title = "Въведи въпроси";
+    ViewBag.FormAction = Model.Questions.Count < Model.NumberOfQ - 1 ?
+    "AddQuestionsOnOwn" : "AddQuestionsOnOwnLast";
+}
+
+<div class="addQuestionsOnOwnContainer">
+    <h2>Добавени въпроси: @Model.Questions.Count / @Model.NumberOfQ</h2>
+    <div class="addQuestionsOnOwnFormContainer">
+        <form method="post" class="addQuestionsContainer"
+              asp-action=@ViewBag.FormAction
+              asp-controller="Question"
+              asp-route-category="@Model.TestCategory"
+              asp-route-title="@Model.TestTitle">
+
+            <label asp-for="@Model.Description">Описание на въпрос</label>
+            <input asp-for="@Model.Description" value="" />
+            <span asp-validation-for="@Model.Description"></span>
+
+            <label asp-for="@Model.Answer1.Value">Стойност на първи отговор</label>
+            <input asp-for="@Model.Answer1.Value" value="" />
+            <span asp-validation-for="@Model.Answer1.Value"></span>
+
+            <label asp-for="@Model.Answer2.Value">Стойност на втори отговор</label>
+            <input asp-for="@Model.Answer2.Value" value="" />
+            <span asp-validation-for="@Model.Answer2.Value"></span>
+
+            <label asp-for="@Model.Answer3.Value">Стойност на трети отговор</label>
+            <input asp-for="@Model.Answer3.Value" value="" />
+            <span asp-validation-for="@Model.Answer3.Value"></span>
+
+            <label asp-for="@Model.Answer4.Value">Стойност на четвърти отговор</label>
+            <input asp-for="@Model.Answer4.Value" value="" />
+            <span asp-validation-for="@Model.Answer4.Value"></span>
+
+            <label asp-for="@Model.RightAnswer.Value">Стойност на верен отговор</label>
+            <input asp-for="@Model.RightAnswer.Value" value="" />
+            <span asp-validation-for="@Model.RightAnswer.Value"></span>
+
+            <input type="hidden" asp-for="TestTitle" value="@Model.TestTitle" />
+            <input type="hidden" asp-for="TestCategory" value="@Model.TestCategory" />
+            <input type="hidden" asp-for="NumberOfQ" value="@Model.NumberOfQ" />
+
+            @for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                <input type="hidden" asp-for="QuestionsJSON" name="QuestionsJSON" id="@i"
+                       value="@JsonSerializer.Serialize(Model.Questions[i], new JsonSerializerOptions()
+                       {
+                            ReferenceHandler = ReferenceHandler.IgnoreCycles
+                       })" />
+            }
+
+            <input class="addQuestionsOnOwnSubmitBtn" type="submit" value="Следващ въпрос" />
+        </form>
+    </div>
+
+    <div class="addQuestionsOnOwnCurrentContainer">
+        @{
+            int questionCounter = 1;
+        }
+
+        @foreach (Question question in Model.Questions)
+        {
+            int answerCounter = 1;
+            <div class="addedQuestionsContainer">
+                <h3>Описание на въпрос №@questionCounter: @question.Description</h3>
+                <h3>Верен отговор на въпроса: @question.RightAnswer</h3>
+                @foreach (Answer answer in question.Answers)
+                {   
+                    <p class="addedQuestionAnswer">Отговор №@answerCounter: @answer.Value</p>
+
+                    answerCounter++;
+                }
+            </div>
+            questionCounter++;
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+</script>

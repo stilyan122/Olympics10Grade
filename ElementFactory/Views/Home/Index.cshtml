@@ -1,0 +1,132 @@
+﻿@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@using ElementFactory.Data.Models;
+@{
+    ViewData["Title"] = "Hачало";
+}
+@model List<ChemicalElement>
+
+<div class="errorDiv1">
+    Невалидна година! Стойността на клетката трябва да е от 0 до 2024!
+</div>
+
+<div class="errorDiv2">
+    Невалидно име! Няма такъв химичен елемент!
+</div>
+
+<form>
+    <table>
+        <tbody>
+            <!--Upper part of the table-->
+            @for (int period = 1; period <= 7; period++)
+            {
+                <tr>
+                    @for (int group = 1; group <= 18; group++)
+                    {
+                        @if (period == 1 && group == 13)
+                        {
+                            <td id="listItems">
+                                <div class="listItems">
+                                    <select id="seeItemsList">
+                                        <option id="seeAtomicNumber">Изглед по характер на елементите</option>
+                                        <option id="seeAtomicMass">Изглед по атомна маса</option>
+                                        <option id="seePhysicalAppearance">Изглед по физично състояние</option>
+                                        <option id="seeAtomicRadius">Изглед по атомен радиус</option>
+                                        <option id="seeMeltingPoint">Изглед по температура на топене</option>
+                                        <option id="seeBoilingPoint">Изглед по температура на кипене</option>
+                                        <option id="seeByYear">Изглед по години (въведи година)</option>
+                                        <option id="seeByName">Намери елемент по име (въведи име)</option>
+                                    </select>
+                                    <input type="number" class="yearInput" />
+                                    <input type="text" class="elementInput" />
+                                </div>
+                            </td>
+                        }
+                        else if (
+                        !(period == 1 &&
+                        (group == 13 ||
+                        group == 14 ||
+                        group == 15 ||
+                        group == 16 ||
+                        group == 17)))
+                        {
+                            ChemicalElement? chemicalElement =
+                            @Model.FirstOrDefault(x => x.Period == period && x.Group == group);
+
+                            if (chemicalElement == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td class="@chemicalElement.ChemicalType.Name">
+                                    <a>
+                                        <p class="atomicNumber">@chemicalElement.AtomicNumber</p>
+                                        <p class="symbol">@chemicalElement.Symbol</p>
+                                        <p class="name">@chemicalElement.Name</p>
+                                    </a>
+                                </td>
+                            }
+                        }
+                    }
+
+                </tr>
+
+            }
+
+            <!--Lanthanides and Actinides-->
+            @for (int i = 1; i <= 2; i++)
+            {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @if (i == 1)
+                    {
+                        @foreach (ChemicalElement chemicalElement in 
+                        Model.Where(x => x.Group == 0 && x.Period == 6).OrderBy(x => x.AtomicNumber))
+                        {
+                            <td class="@chemicalElement.ChemicalType.Name">
+                                <a>
+                                    <p class="atomicNumber">@chemicalElement.AtomicNumber</p>
+                                    <p class="symbol">@chemicalElement.Symbol</p>
+                                    <p class="name">@chemicalElement.Name</p>
+                                </a>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        foreach (ChemicalElement chemicalElement in 
+                        Model.Where(x => x.Group == 0 && x.Period == 7).OrderBy(x => x.AtomicNumber))
+                        {
+                            <td class="@chemicalElement.ChemicalType.Name">
+                                <a>
+                                    <p class="atomicNumber">@chemicalElement.AtomicNumber</p>
+                                    <p class="symbol">@chemicalElement.Symbol</p>
+                                    <p class="name">@chemicalElement.Name</p>
+                                </a>
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+
+<div id="popUpContainerOverlay">
+    <div id="popUpContainer">
+
+    </div>
+</div>
+
+@{
+    var modelJson = JsonSerializer.Serialize(Model, new JsonSerializerOptions()
+    {
+         ReferenceHandler = ReferenceHandler.IgnoreCycles
+    });
+}
+<script src="~/js/createDOM.js" asp-append-version="true" onload="window.AddValidation"></script>
+<script src="/js/listItems.js" asp-append-version="true" onload="PageSettings(@modelJson)"></script>

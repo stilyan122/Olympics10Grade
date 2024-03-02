@@ -1,0 +1,30 @@
+﻿@using ElementFactory.Data.Models;
+@using ElementFactory.Models.Others;
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
+@model ShowTestResultViewModel
+@inject UserManager<User> userManager;
+@{
+    ViewBag.Title = "Резултат от тест";
+    var points = int.Parse(Model.CorrectAnswers) * 5;
+}
+
+<div class="testResultContainer">
+    <h2>Резултат от теста:</h2>
+
+    <h2>Брой верни отговори: @Model.CorrectAnswers / @Model.Questions</h2>
+    <h2>Брой спечелени точки: @points</h2>
+   
+    <div class="testResultBtns">
+        <a class="testResultBtn" 
+            asp-controller="Home" 
+            asp-action="LoadTable"
+        >Върни се в началото</a>
+
+        <a class="testResultBtn"
+        asp-controller="Question" 
+        asp-action="TestsByGrade"
+        asp-route-grade="@Model.ClassCategory"
+        >Още тестове</a>
+    </div>
+</div>
