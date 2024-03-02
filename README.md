@@ -4,7 +4,7 @@
 # Aims
 
 ### Students today face difficulties in learning the material in many subjects, including chemistry. Very often the reason is rooted in poor structuring 
-### and the lack of logical connections with previously acquired knowledge. Our goal was to create a "ElementFactory" app to help visualize and understand information about chemical elements, while demonstrating that chemistry is a science based on well-defined patterns encoded in the periodic table of elements. It interacts with all other sciences, and the challenges before it are enormous.
+and the lack of logical connections with previously acquired knowledge. Our goal was to create a "ElementFactory" app to help visualize and understand information about chemical elements, while demonstrating that chemistry is a science based on well-defined patterns encoded in the periodic table of elements. It interacts with all other sciences, and the challenges before it are enormous.
 ### We mainly aim to spark interest and present complex matter as an achievable challenge for anyone, regardless of current knowledge level. Through the use 
 ### of the application, we aim to facilitate not only students, but also the work of chemistry teachers by providing an intuitive and easy-to-use user interface.
 ### In a world of technology, the periodic table, the chemist's best friend, is used in a static version, without much choice of functionality other than its main 
