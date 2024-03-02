@@ -18,8 +18,8 @@
   ####     • Quiz system
   ####     • Flash cards
   ####     • CRUD operations to them
-### - setting up Authentication (authentication) – creating our own user
-### - setting up Authorization (authorization) – creating own roles
+### - setting up Authentication – creating our own user
+### - setting up Authorization – creating own roles
 ### - adding functionalities according to the role
 ### - adding ranking functionality according to points of different users
 ### - creating styles for the pages (HTML & CSS)
