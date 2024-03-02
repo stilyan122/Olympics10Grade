@@ -34,7 +34,7 @@
 ### - Interface Segregation
 ### - Dependency Inversion
 
-### It is divided into separate parts, with a clear division between: the services department, the data department and the web application department, in which the front-end is managed. A complex structure is implemented in the database, where different table structures are distinguished, with different relationships in them.  There are also three types of connection: one-to-one, many-to-many and one-to-many. Complex connections between individual "actions" (actions) and functions in JavaScript are also implemented. Authentication and authorization make the project work more complex, ensure its better implementation on the Internet and make it much more stable and properly functioning.
+### It is divided into separate parts, with a clear division between: the services department, the data department and the web application department, in which the front-end is managed. A complex structure is implemented in the database, where different table structures are distinguished, with different relationships in them.  There are also three types of connection: one-to-one, many-to-many and one-to-many. Complex connections between individual "actions" and functions in JavaScript are also implemented. Authentication and authorization make the project work more complex, ensure its better implementation on the Internet and make it much more stable and properly functioning.
 
 ![image](https://github.com/stilyan122/Olympics10Grade/assets/117260079/ae595bb6-2708-495d-a04c-6b5cd19faeb1)
 
