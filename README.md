@@ -58,8 +58,7 @@
 ### • Business logic is written in C# and JavaScript.
 ### • Front-end is achieved with Razor and with a combination of HTML & CSS.
 ### • Database architecture achieved with Entity Framework Core.
-### • The IDE for the project is Visual Studio 2022. The ASP.NET Core MVC technology was chosen because it easily achieves 
-### the "separation of concerns" pattern - responsibilities are distributed between View, Model and Controller.
+### • The IDE for the project is Visual Studio 2022. The ASP.NET Core MVC technology was chosen because it easily achieves the "separation of concerns" pattern - responsibilities are distributed between View, Model and Controller.
 ### • The C# language was chosen because of its stable ecosystem, its widespread public use, its strong typing, and its integration with Microsoft technologies.
 ### • Razor syntax is used in the Views because of its easy integration into C# code.
 ### • Used HTML & CSS & JavaScript for front-end because of their stability, cross-browser performance and ecosystem in general.
