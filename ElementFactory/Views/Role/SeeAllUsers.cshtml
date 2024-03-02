@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Mvc;
+@using ElementFactory.Data.Models;
+@inject UserManager<User> userManager;
+@model List<User>;
+@{
+    ViewBag.Title = "Всички потребители";
+}
+
+
+<div class="allUsersContainer">
+    @if (Model.Count!=0)
+    {
+        foreach (User currentUser in Model.OrderBy(x => !userManager.GetRolesAsync(x).Result.Contains("Teacher")).ThenBy(x => x.IsRequested))
+        {
+            var roles = await userManager.GetRolesAsync(currentUser);
+            var list = roles.ToList();
+            var rolesToString = string.Join(", ", list);
+
+            <div class="currentUserContainer">
+                <div class="infoUserContainer">
+                    <p>
+                        Име
+                    </p>
+                    <p>
+                        @currentUser.UserName
+                    </p>
+                </div>
+                <div class="infoUserContainer">
+                    <p>
+                        Глобален Идентификатор
+                    </p>
+                    <p>
+                        @currentUser.Id
+                    </p>
+                </div>
+                <div class="infoUserContainer">
+                    <p>
+                        Имейл
+                    </p>
+                    <p>
+                        @currentUser.Email
+                    </p>
+                </div>
+                <div class="infoUserContainer">
+                    <p>
+                        Роли
+                    </p>
+                    <p>
+                        @rolesToString
+                    </p>
+                </div>
+                <div class="infoUserContainer">
+                    @if (!userManager.GetRolesAsync(currentUser).Result.Contains("Teacher"))
+                    {
+                        if (currentUser.IsRequested)
+                        {
+                            <a class="userButton" asp-route-id="@currentUser.Id" asp-controller="Role" asp-action="MakingATeacher">
+                                Одобряване на заявка
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="userButton" asp-route-id="@currentUser.Id" asp-controller="Role" asp-action="MakingATeacher">
+                                Добавяне на роля "Учител"
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <a>
+
+                        </a>
+                    }
+                    @if (list.Contains("Teacher"))
+                    {
+                        <a class="userButton" asp-route-id="@currentUser.Id" asp-controller="Role" asp-action="RemoveTeacherRole">
+                            Премахване на ролята
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="userButton" id="removeButtonUser" asp-route-id="@currentUser.Id" asp-controller="Role" asp-action="DeleteUser">
+                            Изтриване
+                        </a>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div id="noUsers">
+            Няма потребители!
+        </div>
+    }
+
+
+</div>
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+</script>

@@ -1,0 +1,30 @@
+﻿@using ElementFactory.Models.Flashcard
+@model FlashcardViewModel;
+
+@{
+    ViewBag.Title = "Редактиране на флашкарта";
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<div>
+    <h2 class="text-center white-color-title">@ViewBag.Title</h2>
+    <form method="post" id="editFlashcardForm">
+        <div class="main-flex-edit-flashcard">
+            <div class="flex-edit-flashcard-div">
+                <label asp-for="Title">Въпрос</label>
+                <input asp-for="Title" placeholder="Напишете новия въпрос тук...">
+                <span asp-validation-for="@Model.Title"></span>
+            </div>
+            <div class="flex-edit-flashcard-div">
+                <label asp-for="Content">Отговор</label>
+                <input asp-for="Content" placeholder="Напишете новия отговор тук...">
+                <span asp-validation-for="@Model.Content"></span>
+            </div>
+        </div>
+        <input class="btn btn-warning" type="submit" value="Редактирай" />
+    </form>
+</div>

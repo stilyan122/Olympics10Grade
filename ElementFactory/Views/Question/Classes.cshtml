@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Избери клас";
+}
+<div class="classesViewContainer">
+    <h1 class="classesTitle">Избери клас:</h1>
+    <div class="classesContainer">
+        <a asp-controller="Question" asp-action="TestsByGrade" asp-route-grade="7">7 клас</a>
+        
+        <a asp-controller="Question" asp-action="TestsByGrade" asp-route-grade="8-9">8-9 клас</a>
+       
+        <a asp-controller="Question" asp-action="TestsByGrade" asp-route-grade="10">10 клас</a>
+        
+        <a asp-controller="Question" asp-action="TestsByGrade" asp-route-grade="11-12">11-12 клас</a>
+    </div>
+</div>

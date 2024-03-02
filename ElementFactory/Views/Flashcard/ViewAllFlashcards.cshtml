@@ -1,0 +1,98 @@
+﻿@using ElementFactory.Models.Flashcard;
+@model List<FlashcardViewModel>
+
+@{
+    ViewBag.Title = "Моите флашкарти";
+}
+
+@if (Model.Count() > 0)
+{
+    <div class="whiteFlashcardTitle">
+        <h2 class="text-center flex-white-child-title-flashcard">@ViewBag.Title</h2>
+    </div>
+
+    <div class="container-add-flashcard-viewAll">
+        <a asp-controller="Flashcard" asp-action="AddFlashcard" class="btn-primary btn-allFlashcards-add">Добави флашкарта</a>
+    </div>
+
+    <div class="mainViewAllFlashcardsContainer">
+        @foreach (FlashcardViewModel flashcard in Model)
+        {
+            string identifier = "card" + flashcard.Id;
+            string flipbox = "flip_box " + identifier;
+            string sRound = "s_round " + identifier;
+            string bRound = "b_round " + identifier;
+            string sArrow = "s_arrow " + identifier;
+
+            <div class='viewAllFlashcardsContainer'>
+
+                <div class='@flipbox'>
+
+                    <div class='front'>
+                        <h1 class='f_headline'>@flashcard.Title</h1>
+                        <a asp-controller="Flashcard" asp-action="EditFlashcard" asp-route-id="@flashcard.Id" class="btn btn-warning">Промени</a>
+                        <form class="mt-2" asp-controller="Flashcard" asp-action="DeleteFlashcard" asp-route-id="@flashcard.Id">
+                            <div class="d-grid gap-2 delete-button-flashcards">
+                                <input type="submit" value="Изтрий" class="btn btn-danger mb-2"
+                                       onclick="return confirm('Сигурни ли сте, че искате да изтриете флашкартата: @flashcard.Title')" />
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class='back'>
+                        <h1 class='b_headline'>@flashcard.Content</h1>
+                    </div>
+
+                </div>
+
+                <div class='r_wrap'>
+
+                    <div class='@bRound'></div>
+                    <button class='@sRound' onclick="Flip('@(identifier)')">
+                        <div class='@sArrow'></div>
+                    </button>
+                </div>
+
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="whiteFlashcardTitle">
+        <h2 class="text-center flex-white-child-title-flashcard">Няма флашкарти</h2>
+    </div>
+
+    <div class="container-add-flashcard-viewAll">
+        <a asp-controller="Flashcard" asp-action="AddFlashcard" class="btn-primary btn-allFlashcards-add">Добави флашкарта</a>
+    </div>
+}
+
+<script>
+    function Flip(identifier) {
+        let flipbox = "flip_box " + identifier;
+        let sRound = "s_round " + identifier;
+        let bRound = "b_round " + identifier;
+        let sArrow = "s_arrow " + identifier;
+
+        var s_round = document.getElementsByClassName(sRound)[0];
+        var b_round = document.getElementsByClassName(bRound)[0];
+        var flip_box = document.getElementsByClassName(flipbox)[0];
+        var s_arrow = document.getElementsByClassName(sArrow)[0];
+
+        flip_box.classList.toggle('flipped');
+        s_round.classList.add('s_round_click');
+        s_arrow.classList.toggle('s_arrow_rotate');
+        b_round.classList.toggle('b_round_back_hover');
+
+        s_round.addEventListener("transitionend", function () {
+            s_round.classList.remove('s_round_click');
+            s_round.classList.add('s_round_back');
+        });
+    }
+</script>
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+</script>
+

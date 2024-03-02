@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Добре дошли";
+    string action = "";
+    string controller = "";
+    if (User.Identity.IsAuthenticated)
+    {
+        action = "LoadTable";
+        controller = "Home";
+    }
+    else
+    {
+        action = "Register";
+        controller = "User";
+    }
+}
+<div class="welcomePageContainer">
+    <header>
+        <h1>Здравейте и добре дошли!</h1>
+    </header>
+    <main>
+        <div style="overflow: hidden;">
+            <div style="float: left; margin-right: 20px;">
+                <img src="~/images/elements.png" width="250" height="540">
+            </div>
+            <div class="text-dark ">
+                <div>
+                Проектът "Кодът в химията" ще Ви представи различни аспекти от
+                химията около нас!
+                </div>
+        
+       
+                <div>
+                Ще се запознаем с най-използвания инструмент от химиците - Периодичната таблица,
+                като ще видите различни нейни функционалности, които ще
+                улеснят придобиването и затвърждаването на знания по химия!
+                </div>
+       
+       
+                 <div>
+                Хората, и по-специфично учениците, които искат да проверят
+                знанията си по предмета, могат да изберат от нашите
+                тестове, в зависимост от класа и материала, по когото
+                искат да се подготвят.
+                </div>
+       
+       
+                <div>
+                Това приложение не е само за любознателните и умните, но и за хората,
+                които искат да придобият трайни и бързи знания по предмета. Предлагаме
+                нагледност, бързодействие и функционалност!
+                </div>
+            </div>
+            <section class="hyperlink">
+                <a asp-action="@action" asp-controller="@controller">Какво чакаш? Да започваме!</a>
+            </section>
+        </div>
+    </main>
+</div>

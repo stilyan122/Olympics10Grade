@@ -1,0 +1,60 @@
+﻿@using ElementFactory.Models.Test;
+
+@model List<TestViewModel>
+
+@if (Model.Count > 0)
+{
+    <h3 class="testsByGradeTitle">Тестове за @Model.First().Category</h3>
+    <div class="testsByGradeContainer">
+        @foreach (TestViewModel test in Model)
+        {
+            <div class="testsByGradeCard">
+                <h3 class="testTitle">@test.Title</h3>
+                <div class="testButtons">
+                    <a asp-controller="Question"
+                       asp-action="LoadTest"
+                       asp-route-id="@test.Id">
+                        Започни тест!
+                    </a>
+                    @if (!User.IsInRole("Student"))
+                    {
+                        <form method="get"
+                              asp-controller="Question"
+                              asp-action="EditTestGet"
+                              asp-route-id="@test.Id">
+                            <input type="submit" value="Редактирай тест!" />
+                        </form>
+                        <form method="post"
+                              asp-controller="Question"
+                              asp-action="DeleteTest"
+                              asp-route-id="@test.Id">
+                            <input type="submit" value="Изтрий тест!" />
+                        </form> 
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="testsByGradeNoTests">Няма налични тестове!</div>
+}
+
+<div class="testsByGradeBtns">
+    @if (!User.IsInRole("Student"))
+    {
+        <div class="testsByGradeAdd">
+            <a asp-controller="Question" asp-action="AddTestGet" class="addTestToDbBtn">Добави тест</a>
+        </div>
+    }
+    <div class="returnToClass">
+        <a asp-controller="Question" asp-action="Classes" class="returnToClassesBtn">Избери клас отново</a>
+    </div>
+</div>
+
+<br />
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+</script>

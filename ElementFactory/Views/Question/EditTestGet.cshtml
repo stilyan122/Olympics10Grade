@@ -1,0 +1,66 @@
+﻿@using ElementFactory.Models.Test;
+@using ElementFactory.Models.Question;
+@using ElementFactory.Models.Answer;
+@model EditTestViewModel;
+
+@{
+    ViewBag.Title = "Редактирай тест";
+}
+
+<form asp-controller="Question" asp-action="EditTestPost" method="post" id="editTestForm">
+    <label asp-for="Title">Заглавие</label>
+    <input asp-for="Title" value="@Model.Title"/>
+    <span asp-validation-for="Title"></span>
+
+    <input type="hidden" asp-for="@Model.Id" value="@Model.Id"/>
+
+    <label asp-for="Category">Категория</label>
+    <select asp-for="Category">
+        <option>7 клас</option>
+        <option>8-9 клас</option>
+        <option>10 клас</option>
+        <option>11-12 клас</option>
+    </select>
+    @{
+        int counter = 1;
+    }
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        var question = Model.Questions[i];
+        <div action="editQuestionContainer">
+            @if (counter < 10)
+            {
+                <h3>Въпрос 0@(counter)</h3>
+            }
+            else
+            {
+                <h3>Въпрос @(counter)</h3>
+            }
+            <label asp-for="Questions[i].Description">Описание</label>
+            <textarea asp-for="Questions[i].Description" value="@question.Description" rows="3" cols="50" style="resize: none; display: block;"></textarea>
+
+            <label asp-for="Questions[i].CorrectAnswer">Верен отговор</label>
+            <input asp-for="Questions[i].CorrectAnswer.Value" value="@question.CorrectAnswer.Value" />
+
+            <input type="hidden" asp-for="Questions[i].Id" value="@question.Id" />
+
+            @for (int j = 0; j < question.Answers.Count; j++)
+            {
+                var answer = question.Answers[j];
+
+                <label asp-for="Questions[i].Answers[j].Value">Отговор</label>
+                <input asp-for="Questions[i].Answers[j].Value" value="@answer.Value" />
+
+                <input type="hidden" asp-for="Questions[i].Answers[j].Id" value="@answer.Id"/>
+            }
+        </div>
+        counter++;
+    }
+
+    <input type="submit" value="Запази промените!" id="submitTestBtn"/>
+</form>
+
+
+<script>
+    document.getElementsByTagName('body')[0].classList.add('scrollClass');
+</script>
