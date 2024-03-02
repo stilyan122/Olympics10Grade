@@ -1,4 +1,4 @@
-# Olympics10Grade
+# Olympics 10th Grade
 # Repository about ICT Olympics in 10th grade
 
 # Aims
