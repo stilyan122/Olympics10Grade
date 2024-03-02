@@ -14,10 +14,10 @@
 ### - construction of a structure of entity classes and a database (code first approach to work)
 ### - creating and filling (seeding) the database through configurations (with methods or with JSON)
 ### - creation of the following functionalities:
-  • Basic (Periodic system with its pop-up menus and various sorting implemented with JavaScript logic)
-  • Quiz system
-  • Flash cards
-  • CRUD operations to them
+  #### • Basic (Periodic system with its pop-up menus and various sorting implemented with JavaScript logic)
+  #### • Quiz system
+  #### • Flash cards
+  #### • CRUD operations to them
 ### - setting up Authentication (authentication) – creating our own user
 ### - setting up Authorization (authorization) – creating own roles
 ### - adding functionalities according to the role
